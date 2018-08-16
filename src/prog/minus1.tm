@@ -3,7 +3,7 @@ len 20
 input o
 tape o
 
-state read{
+state read {
     o: o, R, read
     .: ., L, minus
 }
