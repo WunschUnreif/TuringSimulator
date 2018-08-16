@@ -54,4 +54,44 @@ void Machine::input(const std::string& inputTape) {
     }
 }
 
+void Machine::step() {
+    auto currDscp = std::make_pair(currState, *pos);
+    auto nextIt = transFunc.find(currDscp);
+    if(nextIt == transFunc.end()) {
+        mchFlag = MachineFlag::UNDEF;
+        return;
+    }
 
+    int nextState = std::get<0>(nextIt->second);
+    char toWrite = std::get<1>(nextIt->second);
+    bool leftMove = std::get<2>(nextIt->second);
+
+    *pos = toWrite;
+
+    if(leftMove && pos != tape.begin()) --pos;
+    if(!leftMove) ++pos;
+    if(pos == tape.end()) {
+        mchFlag = MachineFlag::OVERFLOW;
+        return;
+    }
+
+    currState = nextState;
+    if(currState == acceptState) {
+        mchFlag = MachineFlag::ACCEPT;
+    } else if(currState == rejectState) {
+        mchFlag = MachineFlag::REJECT;
+    }
+}
+
+void Machine::run() {
+    while(mchFlag == MachineFlag::NORMAL) {
+        step();
+        switch(mchFlag) {
+            case MachineFlag::NORMAL: singleStepISR(*this); break;
+            case MachineFlag::ACCEPT:  onAccept(*this); break;
+            case MachineFlag::REJECT: onReject(*this); break;
+            case MachineFlag::OVERFLOW: onOverflow(*this); break;
+            case MachineFlag::UNDEF: onUndef(*this); break;
+        }
+    }
+}

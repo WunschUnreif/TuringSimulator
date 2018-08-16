@@ -48,6 +48,9 @@ public:
     void input(const std::string& inputTape);
 
     void run();
+
+private:
+    void step();
 };
 
 #endif
