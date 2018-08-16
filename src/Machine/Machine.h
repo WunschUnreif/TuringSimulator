@@ -22,18 +22,28 @@ public:
 
 private:
     std::map<std::pair<int, char>, std::tuple<int, char, bool>> transFunc;
+
     int maxLength;
-    int stateNum, acceptState, rejectState, startState;
-    std::function<void(const Machine&)> onAccept, onReject, onUndef, onOverflow;
+
+    int stateNum = 0, 
+        acceptState = -1, 
+        rejectState = -1, 
+        startState = -1;
+
+    std::function<void(const Machine&)> onAccept,
+                                        onReject,
+                                        onUndef,
+                                        onOverflow;
     std::function<void(const Machine&)> singleStepISR;
 
-    std::set<char> inputAlphabet, tapeAlphabet;
+    std::set<char>  inputAlphabet,
+                    tapeAlphabet;
 
 public:
     std::vector<char> tape;
     std::vector<char>::iterator pos;
     int currState;
-    MachineFlag mchFlag;
+    MachineFlag mchFlag = MachineFlag::NORMAL;
 
 public:
     explicit Machine(const std::string& mchDscpFile);

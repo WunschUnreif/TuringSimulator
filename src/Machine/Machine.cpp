@@ -1,15 +1,6 @@
 #include "Machine.h"
 
-Machine::Machine(const std::string& mchDscpFile) :
-    maxLength(80),
-    stateNum(0),
-    acceptState(-1),
-    rejectState(-1),
-    startState(-1),
-    tape(maxLength, 0),
-    pos(tape.begin()),
-    currState(startState),
-    mchFlag(MachineFlag::NORMAL) {
+Machine::Machine(const std::string& mchDscpFile) {
 
     //compile mchDscpFile.
 
