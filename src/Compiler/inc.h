@@ -21,5 +21,6 @@
 #include "Compiler.h"
 #include "Checker.h"
 #include "Transformer.h"
+#include "Shell.h"
 
 #endif // !INC_H

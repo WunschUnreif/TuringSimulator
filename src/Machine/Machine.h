@@ -10,6 +10,8 @@
 #include <set>
 #include <exception>
 
+#include "../Compiler/inc.h"
+
 class Machine {
 public:
     enum MachineFlag {

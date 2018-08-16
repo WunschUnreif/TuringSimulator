@@ -1,0 +1,1 @@
+g++ main.cpp Machine/Machine.cpp Compiler/File.cpp Compiler/Preprocessor.cpp Compiler/AbstractProgram.cpp Compiler/MachineProgram.cpp Compiler/Compiler.cpp Compiler/Checker.cpp Compiler/Transformer.cpp Compiler/Shell.cpp

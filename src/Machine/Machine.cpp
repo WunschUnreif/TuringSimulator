@@ -1,9 +1,18 @@
 #include "Machine.h"
 
 Machine::Machine(const std::string& mchDscpFile) {
+    CompilerShell shell;
+    shell.compileProgram(mchDscpFile);
+    transFunc = shell.result.transFunc;
+    maxLength = shell.result.maxLength;
+    stateNum = shell.result.stateNum;
+    acceptState = shell.result.acceptState;
+    rejectState = shell.result.rejectState;
+    startState = shell.result.startState;
+    inputAlphabet = shell.result.inputAlphabet;
+    tapeAlphabet = shell.result.tapeAlphabet;
 
-    //compile mchDscpFile.
-
+    resetMachine();
 }
 
 void Machine::bindAccept(std::function<void(const Machine&)> onAcceptCb) {
@@ -27,7 +36,7 @@ void Machine::bindSigleStepISR(std::function<void(const Machine&)> ssISR) {
 }
 
 void Machine::resetMachine() {
-    tape.assign(maxLength, 0);
+    tape.assign(maxLength, '.');
     pos = tape.begin();
     currState = startState;
     mchFlag = MachineFlag::NORMAL;
