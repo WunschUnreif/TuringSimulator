@@ -16,5 +16,9 @@
 
 #include "File.h"
 #include "Preprocessor.h"
+#include "AbstractProgram.h"
+#include "MachineProgram.h"
+#include "Compiler.h"
+#include "Checker.h"
 
 #endif // !INC_H
