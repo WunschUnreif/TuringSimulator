@@ -7,6 +7,12 @@ class Transformer {
 public:
     MachineProgram transformResult;
     
+private:
+    AbstractProgram compileResult;
+
+public:
+    explicit Transformer(const Compiler& compiler): compileResult(compiler.compileResult) {}
+    void startTransform();
 };
 
 #endif // !__TRANSFORMER_H

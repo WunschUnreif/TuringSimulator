@@ -6,10 +6,18 @@ int main() {
     Compiler c(file);
     try {
         pp.run();
+
         c.startCompile();
+
         Checker chk(c);
         chk.check();
+
         c.compileResult.print();
+
+        Transformer tf(c);
+        tf.startTransform();
+        tf.transformResult.print();
+        
     } catch(std::exception& e) {
         std::cout << e.what() << std::endl;
     }
