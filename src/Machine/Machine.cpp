@@ -84,6 +84,7 @@ void Machine::step() {
 }
 
 void Machine::run() {
+    singleStepISR(*this);
     while(mchFlag == MachineFlag::NORMAL) {
         step();
         switch(mchFlag) {
