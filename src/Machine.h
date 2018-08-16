@@ -8,6 +8,7 @@
 #include <utility>
 #include <functional>
 #include <set>
+#include <exception>
 
 class Machine {
 public:
@@ -32,7 +33,7 @@ public:
     std::vector<char> tape;
     std::vector<char>::iterator pos;
     int currState;
-    MachineFlag mchFlage;
+    MachineFlag mchFlag;
 
 public:
     explicit Machine(const std::string& mchDscpFile);
