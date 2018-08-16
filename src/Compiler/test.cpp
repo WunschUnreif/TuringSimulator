@@ -4,8 +4,14 @@ int main() {
     ProgFile file("test.tm");
     Preprocessor pp(file);
     Compiler c(file);
-    pp.run();
-    c.startCompile();
-    c.compileResult.print();
+    try {
+        pp.run();
+        c.startCompile();
+        Checker chk(c);
+        chk.check();
+        c.compileResult.print();
+    } catch(std::exception& e) {
+        std::cout << e.what() << std::endl;
+    }
     return 0;
 }

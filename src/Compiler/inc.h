@@ -20,5 +20,6 @@
 #include "MachineProgram.h"
 #include "Compiler.h"
 #include "Checker.h"
+#include "TransFormer.h"
 
 #endif // !INC_H
