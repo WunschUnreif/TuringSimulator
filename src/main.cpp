@@ -62,6 +62,7 @@ int main() {
         machine.input(inputs);
     } catch(std::exception& e) {
         std::cerr << e.what() << std::endl;
+        exit(0);
     }
 
     machine.run();
